@@ -3,15 +3,24 @@ const fs = require('fs');
 
 const dataDir = path.join(__dirname, '..', 'data');
 
+const SUPPORTED_LANGS = ['zh', 'en'];
+const DEFAULT_LANG = 'zh';
+
 function readJsonFile(filename) {
   const filePath = path.join(dataDir, filename);
   const raw = fs.readFileSync(filePath, 'utf-8');
   return JSON.parse(raw);
 }
 
+function resolveLang(queryLang) {
+  const lang = (queryLang || '').toLowerCase();
+  return SUPPORTED_LANGS.includes(lang) ? lang : DEFAULT_LANG;
+}
+
 const profileController = {
   getProfile(req, res) {
-    const data = readJsonFile('profile.json');
+    const lang = resolveLang(req.query.lang);
+    const data = readJsonFile(`profile.${lang}.json`);
     res.json({ success: true, data });
   },
 };

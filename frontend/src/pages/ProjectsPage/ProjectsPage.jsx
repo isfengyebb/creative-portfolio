@@ -1,21 +1,23 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import PageTransition from '../../components/PageTransition';
 import AnimatedSection from '../../components/AnimatedSection';
 import GlowCard from '../../components/GlowCard';
 import { useProjectsData } from '../../hooks/useProjectsData';
 import styles from './ProjectsPage.module.css';
 
-const categories = [
-  { key: 'all', label: '全部' },
-  { key: 'frontend', label: '前端' },
-  { key: 'backend', label: '后端' },
-  { key: 'fullstack', label: '全栈' },
-  { key: 'tools', label: '工具' },
+const CATEGORY_KEYS = [
+  { key: 'all', i18nKey: 'projects.all' },
+  { key: 'frontend', i18nKey: 'projects.frontend' },
+  { key: 'backend', i18nKey: 'projects.backend' },
+  { key: 'fullstack', i18nKey: 'projects.fullstack' },
+  { key: 'tools', i18nKey: 'projects.tools' },
 ];
 
 function ProjectsPage() {
+  const { t } = useTranslation();
   const { projects, loading, error } = useProjectsData();
   const [activeCategory, setActiveCategory] = useState('all');
 
@@ -27,7 +29,7 @@ function ProjectsPage() {
   if (loading) {
     return (
       <PageTransition>
-        <div className={styles.loading}>加载中...</div>
+        <div className={styles.loading}>{t('loading')}</div>
       </PageTransition>
     );
   }
@@ -35,7 +37,7 @@ function ProjectsPage() {
   if (error) {
     return (
       <PageTransition>
-        <div className={styles.error}>加载失败: {error}</div>
+        <div className={styles.error}>{t('loadingFailed')} {error}</div>
       </PageTransition>
     );
   }
@@ -45,12 +47,15 @@ function ProjectsPage() {
       <main className={styles.page}>
         <div className={styles.container}>
           <AnimatedSection>
-            <h1 className={styles.pageTitle}>作品集</h1>
+            <div className={styles.pageTitleWrapper}>
+              <span className={styles.pageTitleLabel}>// portfolio</span>
+              <h1 className={styles.pageTitle}>{t('projects.title')}</h1>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
             <div className={styles.filters}>
-              {categories.map((cat) => (
+              {CATEGORY_KEYS.map((cat) => (
                 <motion.button
                   key={cat.key}
                   className={`${styles.filterBtn} ${
@@ -60,7 +65,7 @@ function ProjectsPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {cat.label}
+                  {t(cat.i18nKey)}
                 </motion.button>
               ))}
             </div>
@@ -78,7 +83,7 @@ function ProjectsPage() {
                         className={styles.image}
                       />
                       {project.featured && (
-                        <span className={styles.featured}>精选</span>
+                        <span className={styles.featured}>{t('projects.featured')}</span>
                       )}
                     </div>
                     <div className={styles.content}>
@@ -99,7 +104,7 @@ function ProjectsPage() {
                             rel="noopener noreferrer"
                             className={styles.link}
                             whileHover={{ scale: 1.1 }}
-                            title="查看源码"
+                            title={t('projects.viewSource')}
                           >
                             <FaGithub size={18} />
                           </motion.a>
@@ -111,7 +116,7 @@ function ProjectsPage() {
                             rel="noopener noreferrer"
                             className={styles.link}
                             whileHover={{ scale: 1.1 }}
-                            title="在线演示"
+                            title={t('projects.liveDemo')}
                           >
                             <FaExternalLinkAlt size={16} />
                           </motion.a>

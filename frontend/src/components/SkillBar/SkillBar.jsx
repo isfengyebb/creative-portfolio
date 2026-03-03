@@ -9,9 +9,9 @@ function SkillBar({ name, level, color = 'primary' }) {
   });
 
   const colorVar = {
-    primary: 'var(--color-primary)',
-    accent: 'var(--color-accent)',
-    pink: 'var(--color-pink)',
+    primary: 'linear-gradient(90deg, var(--color-primary), var(--color-primary-light))',
+    accent: 'linear-gradient(90deg, var(--color-accent), var(--color-accent-light))',
+    pink: 'linear-gradient(90deg, var(--color-rose), #fb7185)',
   };
 
   return (
@@ -26,7 +26,7 @@ function SkillBar({ name, level, color = 'primary' }) {
           initial={{ width: 0 }}
           animate={inView ? { width: `${level}%` } : { width: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          style={{ backgroundColor: colorVar[color] }}
+          style={{ background: colorVar[color] }}
         />
       </div>
     </div>

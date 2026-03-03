@@ -1,6 +1,6 @@
 .page {
   min-height: calc(100vh - var(--navbar-height));
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-2xl) var(--spacing-xl);
 }
 
 .container {
@@ -15,48 +15,88 @@
   justify-content: center;
   min-height: 60vh;
   color: var(--color-text-secondary);
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-family: var(--font-mono);
 }
 
 .error {
-  color: var(--color-pink);
+  color: var(--color-rose);
+}
+
+/* ─── 页面标题 ─── */
+.pageTitleWrapper {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.pageTitleLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-primary-light);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
 }
 
 .pageTitle {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-  text-align: center;
-  margin-bottom: var(--spacing-3xl);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-light),
-    var(--color-accent)
-  );
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--color-text) 30%, var(--color-primary-light) 70%, var(--color-accent) 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientFlow 5s ease infinite;
+  letter-spacing: -0.02em;
 }
 
+/* ─── 内容区两栏布局 ─── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xl);
+  align-items: start;
+}
+
+/* ─── Section ─── */
 .section {
-  margin-bottom: var(--spacing-3xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionNum {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  background: var(--color-accent-dim);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
 }
 
 .sectionTitle {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-accent);
-  margin-bottom: var(--spacing-xl);
-  padding-left: var(--spacing-md);
-  border-left: 3px solid var(--color-primary);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
+/* ─── 时间线 ─── */
 .timeline {
-  padding-left: var(--spacing-md);
+  padding-left: var(--spacing-sm);
 }
 
+/* ─── 亮点列表 ─── */
 .highlights {
   list-style: none;
   padding: 0;
@@ -68,8 +108,8 @@
   padding-left: var(--spacing-md);
   margin-bottom: var(--spacing-xs);
   color: var(--color-text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 0.87rem;
+  line-height: 1.6;
 }
 
 .highlights li::before {
@@ -79,10 +119,15 @@
   color: var(--color-accent);
 }
 
+/* ─── 技能网格 ─── */
+.skillsSection {
+  margin-bottom: var(--spacing-2xl);
+}
+
 .skillsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--spacing-md);
 }
 
 .skillCard {
@@ -90,18 +135,31 @@
 }
 
 .skillCategory {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-primary-light);
   margin: 0 0 var(--spacing-md) 0;
   padding-bottom: var(--spacing-sm);
   border-bottom: 1px solid var(--color-border);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─── 响应式 ─── */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .page {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
 }
 
 @media (max-width: 768px) {
   .pageTitle {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .skillsGrid {

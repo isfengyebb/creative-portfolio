@@ -23,12 +23,38 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 点阵网格背景 */
+  background-image:
+    radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size));
+  background-size: var(--dot-space) var(--dot-space);
+  background-attachment: fixed;
+}
+
+/* 顶部渐变光晕 */
+body::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 60vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 58, 237, 0.06) 0%,
+    rgba(6, 182, 212, 0.03) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -60,12 +86,13 @@ img {
 }
 
 ::selection {
-  background-color: var(--color-primary);
+  background-color: rgba(124, 58, 237, 0.4);
   color: #fff;
 }
 
+/* ─── 滚动条 ─── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -73,7 +100,7 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
   border-radius: var(--radius-full);
 }
 
@@ -81,7 +108,7 @@ img {
   background: var(--color-primary-light);
 }
 
-/* 容器 */
+/* ─── 容器 ─── */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -89,7 +116,6 @@ img {
   padding: 0 var(--spacing-xl);
 }
 
-/* 页面区域 */
 .section {
   padding: var(--spacing-3xl) 0;
 }
@@ -99,26 +125,21 @@ img {
   margin-bottom: var(--spacing-2xl);
   text-align: center;
   background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: gradientFlow 4s ease infinite;
 }
 
-/* 响应式 */
+/* ─── 响应式 ─── */
 @media (max-width: 768px) {
   html { font-size: 14px; }
-
   h1 { font-size: 2.25rem; }
   h2 { font-size: 1.75rem; }
   h3 { font-size: 1.25rem; }
-
-  .container {
-    padding: 0 var(--spacing-md);
-  }
-
-  .section {
-    padding: var(--spacing-2xl) 0;
-  }
+  .container { padding: 0 var(--spacing-md); }
+  .section { padding: var(--spacing-2xl) 0; }
 }
 
 @media (max-width: 480px) {

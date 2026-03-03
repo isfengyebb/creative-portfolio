@@ -6,7 +6,7 @@ export const ROUTES = {
 };
 
 export const NAV_LINKS = [
-  { path: ROUTES.HOME, label: '首页' },
-  { path: ROUTES.RESUME, label: '简历' },
-  { path: ROUTES.PROJECTS, label: '作品集' },
+  { path: ROUTES.HOME, label: 'nav.home' },
+  { path: ROUTES.RESUME, label: 'nav.resume' },
+  { path: ROUTES.PROJECTS, label: 'nav.projects' },
 ];

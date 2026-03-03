@@ -1,6 +1,6 @@
 .page {
   min-height: calc(100vh - var(--navbar-height));
-  padding: var(--spacing-2xl);
+  padding: var(--spacing-2xl) var(--spacing-xl);
 }
 
 .container {
@@ -15,30 +15,44 @@
   justify-content: center;
   min-height: 60vh;
   color: var(--color-text-secondary);
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-family: var(--font-mono);
 }
 
 .error {
-  color: var(--color-pink);
+  color: var(--color-rose);
+}
+
+/* ─── 页面标题 ─── */
+.pageTitleWrapper {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.pageTitleLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
 }
 
 .pageTitle {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-  text-align: center;
-  margin-bottom: var(--spacing-2xl);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-light),
-    var(--color-accent)
-  );
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--color-text) 30%, var(--color-primary-light) 70%, var(--color-accent) 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientFlow 5s ease infinite;
+  letter-spacing: -0.02em;
 }
 
+/* ─── 过滤器 ─── */
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -48,38 +62,45 @@
 }
 
 .filterBtn {
-  padding: var(--spacing-xs) var(--spacing-lg);
+  padding: 8px 20px;
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-full);
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
   cursor: pointer;
   transition: all var(--transition-base);
+  letter-spacing: 0.04em;
 }
 
 .filterBtn:hover {
   border-color: var(--color-primary);
   color: var(--color-primary-light);
+  background: var(--color-primary-dim);
 }
 
 .filterBtn.active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-text);
+  background: linear-gradient(135deg, var(--color-primary), rgba(6, 182, 212, 0.8));
+  border-color: transparent;
+  color: #fff;
   box-shadow: var(--glow-primary);
+  font-weight: 500;
 }
 
+/* ─── 项目网格 ─── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--spacing-lg);
 }
 
+/* ─── 卡片 ─── */
 .card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  cursor: default;
 }
 
 .imageWrapper {
@@ -87,8 +108,9 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   margin-bottom: var(--spacing-md);
+  background: var(--color-bg-secondary);
 }
 
 .image {
@@ -96,90 +118,116 @@
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-slow);
+  filter: brightness(0.85);
 }
 
 .card:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.06);
+  filter: brightness(1);
 }
 
 .featured {
   position: absolute;
-  top: var(--spacing-sm);
-  right: var(--spacing-sm);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: var(--color-pink);
-  color: var(--color-text);
-  font-size: 0.75rem;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: linear-gradient(135deg, var(--color-amber), #fcd34d);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 600;
   border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-sm);
 }
 
 .title {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--color-text);
-  margin: 0 0 var(--spacing-sm) 0;
+  letter-spacing: -0.01em;
 }
 
 .description {
-  font-size: 0.9rem;
+  font-size: 0.87rem;
   color: var(--color-text-muted);
-  line-height: 1.6;
-  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.7;
   flex: 1;
 }
 
+/* ─── 技术标签 ─── */
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-md);
+  gap: 6px;
 }
 
 .tag {
-  padding: 2px var(--spacing-sm);
-  background: rgba(108, 92, 231, 0.15);
+  padding: 3px 10px;
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  color: var(--color-primary-light);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  background: var(--color-lime-dim);
+  border: 1px solid rgba(132, 204, 22, 0.2);
+  color: var(--color-lime);
+  transition: all var(--transition-fast);
 }
 
+.tag:hover {
+  background: rgba(132, 204, 22, 0.2);
+  border-color: rgba(132, 204, 22, 0.4);
+}
+
+/* ─── 操作链接 ─── */
 .links {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   padding-top: var(--spacing-sm);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border-subtle);
 }
 
 .link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--color-text-secondary);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-muted);
   text-decoration: none;
   transition: all var(--transition-base);
 }
 
 .link:hover {
-  background: var(--color-primary);
-  color: var(--color-text);
+  background: var(--color-primary-dim);
+  border-color: var(--color-primary);
+  color: var(--color-primary-light);
   box-shadow: var(--glow-primary);
 }
 
+/* ─── 响应式 ─── */
 @media (max-width: 768px) {
+  .page {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
   .pageTitle {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .grid {

@@ -1,9 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { NavLink, Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { NAV_LINKS } from '../../constants';
+import LanguageSwitcher from '../LanguageSwitcher';
 import styles from './Navbar.module.css';
 
 function Navbar() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -30,31 +33,38 @@ function Navbar() {
             Feng's Space
           </Link>
 
-          <ul className={styles.navLinks}>
-            {NAV_LINKS.map((link) => (
-              <li key={link.path}>
-                <NavLink
-                  to={link.path}
-                  end={link.path === '/'}
-                  className={({ isActive }) =>
-                    `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
-                  }
-                >
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <div className={styles.navRight}>
+            <ul className={styles.navLinks}>
+              {NAV_LINKS.map((link) => (
+                <li key={link.path}>
+                  <NavLink
+                    to={link.path}
+                    end={link.path === '/'}
+                    className={({ isActive }) =>
+                      `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
+                    }
+                  >
+                    {t(link.label)}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
 
-          <button
-            className={hamburgerClass}
-            onClick={() => setMobileOpen((prev) => !prev)}
-            aria-label="切换菜单"
-          >
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
-          </button>
+            <LanguageSwitcher />
+          </div>
+
+          <div className={styles.mobileActions}>
+            <LanguageSwitcher />
+            <button
+              className={hamburgerClass}
+              onClick={() => setMobileOpen((prev) => !prev)}
+              aria-label={t('nav.toggleMenu')}
+            >
+              <span className={styles.hamburgerLine} />
+              <span className={styles.hamburgerLine} />
+              <span className={styles.hamburgerLine} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -71,7 +81,7 @@ function Navbar() {
             }
             onClick={closeMobile}
           >
-            {link.label}
+            {t(link.label)}
           </NavLink>
         ))}
       </div>

@@ -2,14 +2,15 @@
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-lg);
   position: relative;
   overflow: hidden;
-  transition: box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
 }
 
+/* 顶部高光线 */
 .card::before {
   content: '';
   position: absolute;
@@ -19,11 +20,43 @@
   height: 1px;
   background: linear-gradient(
     90deg,
+    transparent 0%,
+    var(--color-primary-light) 50%,
+    transparent 100%
+  );
+  opacity: 0.4;
+  transition: opacity var(--transition-base);
+}
+
+/* 悬停边框闪光 */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
     transparent,
-    var(--color-primary-light),
+    rgba(167, 139, 250, 0.06),
     transparent
   );
-  opacity: 0.5;
+  transition: none;
+}
+
+.card:hover {
+  border-color: var(--color-border);
+  transform: translateY(-2px);
+}
+
+.card:hover::before {
+  opacity: 0.8;
+}
+
+.card:hover::after {
+  left: 150%;
+  transition: left 0.6s ease;
 }
 
 .glow-primary:hover {
@@ -35,5 +68,5 @@
 }
 
 .glow-pink:hover {
-  box-shadow: var(--glow-pink);
+  box-shadow: 0 0 24px rgba(244, 63, 94, 0.4), 0 0 60px rgba(244, 63, 94, 0.15);
 }

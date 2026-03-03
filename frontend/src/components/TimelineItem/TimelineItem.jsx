@@ -18,7 +18,7 @@ function TimelineItem({
         <span className={styles.period}>{period}</span>
         <h3 className={styles.title}>{title}</h3>
         {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-        {description && <p className={styles.description}>{description}</p>}
+        {description && <div className={styles.description}>{description}</div>}
       </div>
     </AnimatedSection>
   );

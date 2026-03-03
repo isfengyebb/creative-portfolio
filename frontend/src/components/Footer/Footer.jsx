@@ -1,8 +1,10 @@
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { ROUTES } from '../../constants';
 import styles from './Footer.module.css';
 
 function Footer() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -11,17 +13,17 @@ function Footer() {
         <p className={styles.footerText}>
           &copy; {currentYear}{' '}
           <span className={styles.footerHighlight}>Feng's Space</span>
-          . Built with React & creativity.
+          . {t('footer.builtWith')}.
         </p>
         <nav className={styles.footerLinks}>
           <Link to={ROUTES.HOME} className={styles.footerLink}>
-            首页
+            {t('nav.home')}
           </Link>
           <Link to={ROUTES.RESUME} className={styles.footerLink}>
-            简历
+            {t('nav.resume')}
           </Link>
           <Link to={ROUTES.PROJECTS} className={styles.footerLink}>
-            作品集
+            {t('nav.projects')}
           </Link>
         </nav>
       </div>

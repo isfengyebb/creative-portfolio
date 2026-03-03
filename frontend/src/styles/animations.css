@@ -1,103 +1,143 @@
-/* 渐入 */
+/* ─── 基础动画 ─── */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* 上滑渐入 */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 下滑渐入 */
 @keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 左滑渐入 */
 @keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* 右滑渐入 */
 @keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* 缩放渐入 */
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* 脉冲发光 */
+/* ─── 发光脉冲 ─── */
 @keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(108, 92, 231, 0.6);
-  }
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
+  50% { box-shadow: 0 0 50px rgba(124, 58, 237, 0.7), 0 0 80px rgba(124, 58, 237, 0.3); }
 }
 
-/* 光标闪烁（打字机效果） */
+@keyframes pulseGlowAccent {
+  0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
+  50% { box-shadow: 0 0 50px rgba(6, 182, 212, 0.7), 0 0 80px rgba(6, 182, 212, 0.3); }
+}
+
+/* ─── 闪烁光标 ─── */
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-/* 浮动效果 */
+/* ─── 浮动 ─── */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
 }
 
-/* 进度条填充 */
+/* ─── 技能条填充 ─── */
 @keyframes fillBar {
   from { width: 0; }
 }
 
-/* 旋转 */
+/* ─── 旋转 ─── */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* 减弱动画偏好 */
+@keyframes spinReverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* ─── 渐变边框旋转 ─── */
+@keyframes gradientRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── 扫描线 ─── */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ─── 光晕脉冲（头像） ─── */
+@keyframes avatarPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0px rgba(124, 58, 237, 0.4),
+      0 0 40px rgba(124, 58, 237, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 0 12px rgba(124, 58, 237, 0),
+      0 0 60px rgba(124, 58, 237, 0.5);
+  }
+}
+
+/* ─── 轨道环 ─── */
+@keyframes orbitOne {
+  from { transform: rotate(0deg) translateX(88px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(88px) rotate(-360deg); }
+}
+
+@keyframes orbitTwo {
+  from { transform: rotate(120deg) translateX(108px) rotate(-120deg); }
+  to { transform: rotate(480deg) translateX(108px) rotate(-480deg); }
+}
+
+@keyframes orbitThree {
+  from { transform: rotate(240deg) translateX(128px) rotate(-240deg); }
+  to { transform: rotate(600deg) translateX(128px) rotate(-600deg); }
+}
+
+/* ─── 文字渐变流动 ─── */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── 卡片边框闪光 ─── */
+@keyframes borderShimmer {
+  0% { opacity: 0; transform: translateX(-100%); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* ─── 状态指示器闪烁 ─── */
+@keyframes statusPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* ─── 点阵背景脉冲 ─── */
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.3; }
+}
+
+/* ─── 减弱动画偏好 ─── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

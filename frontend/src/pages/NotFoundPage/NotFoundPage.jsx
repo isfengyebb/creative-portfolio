@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import ParticleBackground from '../../components/ParticleBackground';
 import PageTransition from '../../components/PageTransition';
 import styles from './NotFoundPage.module.css';
@@ -15,6 +16,7 @@ const generateStars = () =>
   }));
 
 function NotFoundPage() {
+  const { t } = useTranslation();
   const [stars] = useState(generateStars);
 
   return (
@@ -75,7 +77,7 @@ function NotFoundPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            迷失在宇宙中
+            {t('notFound.title')}
           </motion.h1>
 
           <motion.p
@@ -84,7 +86,7 @@ function NotFoundPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
           >
-            你访问的页面似乎已经漂浮到了未知的星际空间
+            {t('notFound.message')}
           </motion.p>
 
           <motion.div
@@ -97,7 +99,7 @@ function NotFoundPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                返回地球
+                {t('notFound.goHome')}
               </motion.span>
             </Link>
           </motion.div>
