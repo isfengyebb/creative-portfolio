@@ -1,0 +1,68 @@
+[
+  {
+    "id": "proj-1",
+    "title": "智能任务管理平台",
+    "description": "基于 AI 的任务管理工具，支持智能分类、优先级排序和团队协作。采用 React + Node.js 全栈技术，集成 OpenAI API 实现智能推荐。",
+    "image": "/images/project-placeholder.svg",
+    "tags": ["React", "Node.js", "OpenAI", "PostgreSQL"],
+    "category": "fullstack",
+    "github": "https://github.com",
+    "demo": "https://example.com",
+    "featured": true
+  },
+  {
+    "id": "proj-2",
+    "title": "实时数据可视化仪表盘",
+    "description": "企业级数据可视化平台，支持实时数据流展示、自定义图表配置和数据导出。使用 D3.js 和 WebSocket 实现高性能实时渲染。",
+    "image": "/images/project-placeholder.svg",
+    "tags": ["React", "D3.js", "WebSocket", "Express"],
+    "category": "frontend",
+    "github": "https://github.com",
+    "demo": "https://example.com",
+    "featured": true
+  },
+  {
+    "id": "proj-3",
+    "title": "微服务 API 网关",
+    "description": "高性能 API 网关服务，支持路由转发、限流、认证和日志收集。基于 Node.js 构建，日均处理百万级请求。",
+    "image": "/images/project-placeholder.svg",
+    "tags": ["Node.js", "Redis", "Docker", "Nginx"],
+    "category": "backend",
+    "github": "https://github.com",
+    "demo": null,
+    "featured": false
+  },
+  {
+    "id": "proj-4",
+    "title": "个人博客系统",
+    "description": "使用 Next.js 构建的 SSG 博客系统，支持 Markdown 写作、暗色模式和 SEO 优化。拥有创意的宇宙主题设计。",
+    "image": "/images/project-placeholder.svg",
+    "tags": ["Next.js", "MDX", "Tailwind CSS"],
+    "category": "frontend",
+    "github": "https://github.com",
+    "demo": "https://example.com",
+    "featured": true
+  },
+  {
+    "id": "proj-5",
+    "title": "CLI 脚手架工具",
+    "description": "项目初始化 CLI 工具，支持多种模板选择、配置自定义和插件系统。用 Node.js 编写，发布于 npm。",
+    "image": "/images/project-placeholder.svg",
+    "tags": ["Node.js", "CLI", "npm"],
+    "category": "tools",
+    "github": "https://github.com",
+    "demo": null,
+    "featured": false
+  },
+  {
+    "id": "proj-6",
+    "title": "电商移动端 H5",
+    "description": "电商 H5 应用，包含商品浏览、购物车、订单管理等完整功能。使用 React + Zustand 实现流畅的移动端体验。",
+    "image": "/images/project-placeholder.svg",
+    "tags": ["React", "Zustand", "Vite", "CSS Modules"],
+    "category": "fullstack",
+    "github": "https://github.com",
+    "demo": "https://example.com",
+    "featured": false
+  }
+]

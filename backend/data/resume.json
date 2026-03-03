@@ -1,0 +1,52 @@
+{
+  "education": [
+    {
+      "id": "edu-1",
+      "school": "某某大学",
+      "degree": "计算机科学与技术 · 学士",
+      "period": "2018 - 2022",
+      "description": "主修计算机科学核心课程，包括数据结构、算法、操作系统、计算机网络等。参与多个校级项目开发，获得优秀毕业设计。",
+      "achievements": [
+        "GPA 3.8/4.0",
+        "优秀毕业设计",
+        "ACM 编程竞赛校级二等奖"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-1",
+      "company": "科技创新有限公司",
+      "position": "高级前端工程师",
+      "period": "2023 - 至今",
+      "description": "负责公司核心产品的前端架构设计与开发，主导技术选型和团队代码规范制定。",
+      "highlights": [
+        "主导前端微服务架构迁移，提升团队开发效率 40%",
+        "设计并实现组件库，覆盖 50+ 通用组件",
+        "优化首屏加载时间，LCP 从 3.2s 降至 1.1s"
+      ]
+    },
+    {
+      "id": "exp-2",
+      "company": "数字互动科技",
+      "position": "全栈开发工程师",
+      "period": "2022 - 2023",
+      "description": "参与多个 B 端 SaaS 产品开发，使用 React + Node.js 技术栈。",
+      "highlights": [
+        "独立完成用户权限管理模块的全栈开发",
+        "使用 WebSocket 实现实时数据推送功能",
+        "编写单元测试和集成测试，代码覆盖率达 85%"
+      ]
+    }
+  ],
+  "skills": [
+    { "name": "React / Next.js", "level": 92, "category": "frontend" },
+    { "name": "TypeScript", "level": 88, "category": "frontend" },
+    { "name": "CSS / Tailwind", "level": 85, "category": "frontend" },
+    { "name": "Node.js / Express", "level": 85, "category": "backend" },
+    { "name": "PostgreSQL / MongoDB", "level": 78, "category": "backend" },
+    { "name": "Docker / CI-CD", "level": 72, "category": "devops" },
+    { "name": "Git / GitHub", "level": 90, "category": "tools" },
+    { "name": "Figma / UI Design", "level": 70, "category": "design" }
+  ]
+}

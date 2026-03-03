@@ -1,10 +1,20 @@
 const express = require('express');
-const app = express();
-const port = 3001;
+const path = require('path');
+const cors = require('cors');
+const apiRoutes = require('./routes');
+const errorHandler = require('./middleware/errorHandler');
 
-app.get('/', (req, res) => {
-  res.send('Hello from the backend!');
-});
+const app = express();
+const port = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+
+app.use('/api', apiRoutes);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Backend server listening at http://localhost:${port}`);
