@@ -2,7 +2,7 @@
   "name": "Feng",
   "title": "Full-Stack Developer",
   "subtitle": "Passionate about creating elegant digital experiences",
-  "avatar": "/images/avatar-placeholder.svg",
+  "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Feng&backgroundColor=c4a7e7",
   "bio": "Hello! I'm a passionate full-stack developer focused on building beautiful and high-performance web applications. I believe that code is not just a tool, but an expression of creativity. In the universe of technology, I am constantly exploring new possibilities.",
   "location": "China",
   "email": "hello@example.com",

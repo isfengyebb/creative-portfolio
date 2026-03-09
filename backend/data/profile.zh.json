@@ -2,7 +2,7 @@
   "name": "Feng",
   "title": "全栈开发工程师",
   "subtitle": "热爱创造优雅的数字体验",
-  "avatar": "/images/avatar-placeholder.svg",
+  "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Feng&backgroundColor=c4a7e7",
   "bio": "你好！我是一名充满热情的全栈开发工程师，专注于构建美观且高性能的 Web 应用。我相信代码不仅仅是工具，更是一种创造力的表达方式。在技术的宇宙中，我不断探索新的可能性。",
   "location": "中国",
   "email": "hello@example.com",

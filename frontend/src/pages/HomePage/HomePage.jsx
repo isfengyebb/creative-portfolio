@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
-import ParticleBackground from '../../components/ParticleBackground';
+import { ArrowRightIcon, RocketIcon } from 'lucide-react';
+import { Button, buttonVariants } from '../../components/ui/button';
+import { InfiniteSlider } from '../../components/ui/infinite-slider';
+import { cn } from '../../lib/utils';
 import PageTransition from '../../components/PageTransition';
-import AnimatedSection from '../../components/AnimatedSection';
 import { useProfileData } from '../../hooks/useProfileData';
-import styles from './HomePage.module.css';
-import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 const iconMap = {
   FaGithub,
@@ -14,28 +15,27 @@ const iconMap = {
   FaTwitter,
 };
 
-const charVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
+const techLogos = [
+  { name: 'React', icon: '⚛️' },
+  { name: 'TypeScript', icon: '📘' },
+  { name: 'Node.js', icon: '🟢' },
+  { name: 'Vue', icon: '💚' },
+  { name: 'Next.js', icon: '▲' },
+  { name: 'Tailwind', icon: '🎨' },
+  { name: 'PostgreSQL', icon: '🐘' },
+  { name: 'Docker', icon: '🐳' },
+];
 
 function HomePage() {
   const { t } = useTranslation();
   const { profile, loading, error } = useProfileData();
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  const typingVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: prefersReducedMotion ? 0 : 0.05 },
-    },
-  };
 
   if (loading) {
     return (
       <PageTransition>
-        <div className={styles.loading}>{t('loading')}</div>
+        <div className="flex min-h-[60vh] items-center justify-center text-lg text-muted-foreground">
+          {t('loading')}
+        </div>
       </PageTransition>
     );
   }
@@ -43,7 +43,7 @@ function HomePage() {
   if (error) {
     return (
       <PageTransition>
-        <div className={styles.error}>
+        <div className="flex min-h-[60vh] items-center justify-center text-lg text-destructive">
           {t('loadingFailed')} {error}
         </div>
       </PageTransition>
@@ -52,145 +52,170 @@ function HomePage() {
 
   return (
     <PageTransition>
-      <ParticleBackground />
-      <main className={styles.hero}>
-        <div className={styles.container}>
+      <main className="flex w-full flex-col">
+        {/* Hero Section */}
+        <section className="mx-auto w-full">
+          {/* Top Shades */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 isolate hidden overflow-hidden contain-strict lg:block"
+          >
+            <div className="absolute inset-0 -top-14 isolate -z-10 bg-[radial-gradient(35%_80%_at_49%_0%,--theme(--color-foreground/.08),transparent)] contain-strict" />
+          </div>
 
-          {/* ─── 左栏：头像 ─── */}
-          <AnimatedSection>
-            <div className={styles.left}>
-              <motion.div
-                className={styles.avatarWrapper}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 180, delay: 0.1 }}
-              >
-                <div className={styles.orbitContainer}>
-                  <div className={styles.orbitRingOuter}>
-                    <div className={`${styles.orbitDot} ${styles.orbitDotPurple}`} />
-                  </div>
-                  <div className={styles.orbitRingMiddle}>
-                    <div className={`${styles.orbitDot} ${styles.orbitDotCyan}`} />
-                  </div>
-                </div>
+          {/* X Bold Faded Borders */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 mx-auto hidden min-h-screen w-full lg:block"
+          >
+            <div className="mask-y-from-80% mask-y-to-100% absolute inset-y-0 left-0 z-10 h-full w-px bg-foreground/15" />
+            <div className="mask-y-from-80% mask-y-to-100% absolute inset-y-0 right-0 z-10 h-full w-px bg-foreground/15" />
+          </div>
+
+          {/* Main Content */}
+          <div className="relative flex flex-col items-center justify-center gap-6 pt-24 pb-16">
+            {/* X Content Faded Borders */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -z-1 size-full overflow-hidden"
+            >
+              <div className="absolute inset-y-0 left-4 w-px bg-linear-to-b from-transparent via-border to-border md:left-8" />
+              <div className="absolute inset-y-0 right-4 w-px bg-linear-to-b from-transparent via-border to-border md:right-8" />
+              <div className="absolute inset-y-0 left-8 w-px bg-linear-to-b from-transparent via-border/50 to-border/50 md:left-12" />
+              <div className="absolute inset-y-0 right-8 w-px bg-linear-to-b from-transparent via-border/50 to-border/50 md:right-12" />
+            </div>
+
+            {/* Status Badge */}
+            <Link
+              to="/resume"
+              className={cn(
+                'group mx-auto flex w-fit items-center gap-3 rounded-full border bg-card px-3 py-1 shadow',
+                'fade-in slide-in-from-bottom-10 animate-in fill-mode-backwards transition-all delay-500 duration-500 ease-out'
+              )}
+            >
+              <span className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
+              <span className="text-xs text-muted-foreground">{t('home.available')}</span>
+              <span className="block h-5 border-l" />
+              <ArrowRightIcon className="size-3 duration-150 ease-out group-hover:translate-x-1" />
+            </Link>
+
+            {/* Avatar */}
+            <motion.div
+              className={cn(
+                'fade-in slide-in-from-bottom-10 animate-in fill-mode-backwards delay-100 duration-500 ease-out'
+              )}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 180, delay: 0.1 }}
+            >
+              <div className="relative">
                 <img
                   src={profile.avatar}
                   alt={profile.name}
-                  className={styles.avatar}
+                  className="h-24 w-24 rounded-full border-2 border-primary/50 object-cover shadow-lg"
                 />
-              </motion.div>
+              </div>
+            </motion.div>
 
-              <motion.div
-                className={styles.statusRow}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <span className={styles.statusDot} />
-                <span>Available</span>
-              </motion.div>
-
-              {profile.location && (
-                <motion.div
-                  className={styles.location}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  📍 {profile.location}
-                </motion.div>
+            {/* Name */}
+            <h1
+              className={cn(
+                'fade-in slide-in-from-bottom-10 animate-in text-balance fill-mode-backwards text-center text-4xl font-bold tracking-tight delay-200 duration-500 ease-out md:text-5xl lg:text-6xl',
+                'bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent'
               )}
-            </div>
-          </AnimatedSection>
+            >
+              {profile.name}
+            </h1>
 
-          {/* ─── 右栏：内容 ─── */}
-          <div className={styles.right}>
-            <AnimatedSection delay={0.15}>
-              <span className={styles.label}>// hello world</span>
-            </AnimatedSection>
+            {/* Title */}
+            <p className="fade-in slide-in-from-bottom-10 mx-auto max-w-md animate-in fill-mode-backwards text-center text-lg font-medium text-foreground/80 tracking-wider delay-300 duration-500 ease-out md:text-xl">
+              {profile.title}
+            </p>
 
-            <AnimatedSection delay={0.25}>
-              <h1 className={styles.name}>{profile.name}</h1>
-            </AnimatedSection>
+            {/* Subtitle */}
+            <p className="fade-in slide-in-from-bottom-10 mx-auto max-w-lg animate-in fill-mode-backwards text-center text-base text-muted-foreground delay-400 duration-500 ease-out">
+              {profile.subtitle}
+            </p>
 
-            <AnimatedSection delay={0.35}>
-              <motion.div
-                className={styles.title}
-                variants={typingVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {(profile?.title || '').split('').map((char, index) => (
-                  <motion.span key={index} variants={charVariants}>
-                    {char}
-                  </motion.span>
-                ))}
-                <span className={styles.cursor} />
-              </motion.div>
-            </AnimatedSection>
+            {/* Bio */}
+            <p className="fade-in slide-in-from-bottom-10 mx-auto max-w-xl animate-in fill-mode-backwards text-center text-sm text-muted-foreground/80 leading-relaxed delay-500 duration-500 ease-out">
+              {profile.bio}
+            </p>
 
-            <AnimatedSection delay={0.4}>
-              <div className={styles.divider} />
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.45}>
-              <p className={styles.subtitle}>{profile.subtitle}</p>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.5}>
-              <p className={styles.bio}>{profile.bio}</p>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.55}>
-              <div className={styles.highlights}>
-                {profile.highlights.map((item, index) => (
-                  <motion.span
-                    key={index}
-                    className={styles.highlight}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    <span>▸</span>
-                    {item}
-                  </motion.span>
-                ))}
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.6}>
-              <div className={styles.socialLinks}>
-                {profile.social.map((item) => {
-                  const Icon = iconMap[item.icon];
-                  return (
-                    Icon && (
-                      <motion.a
-                        key={item.platform}
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.socialLink}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        title={item.platform}
-                      >
-                        <Icon size={18} />
-                      </motion.a>
-                    )
-                  );
-                })}
-                <motion.a
-                  href={`mailto:${profile.email}`}
-                  className={styles.socialLink}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  title="Email"
+            {/* Highlights */}
+            <div className="fade-in slide-in-from-bottom-10 flex animate-in flex-wrap items-center justify-center gap-2 fill-mode-backwards pt-2 delay-600 duration-500 ease-out">
+              {profile.highlights.map((item, index) => (
+                <span
+                  key={index}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-lime-500/25 bg-lime-500/10 px-3 py-1 text-xs font-medium text-lime-600 dark:text-lime-400"
                 >
-                  <FaEnvelope size={18} />
-                </motion.a>
-              </div>
-            </AnimatedSection>
+                  <span>▸</span>
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="fade-in slide-in-from-bottom-10 flex animate-in flex-row flex-wrap items-center justify-center gap-3 fill-mode-backwards pt-4 delay-700 duration-500 ease-out">
+              <Button className="rounded-full" size="lg" variant="secondary" asChild>
+                <a href={`mailto:${profile.email}`}>
+                  <FaEnvelope className="mr-2 size-4" />
+                  {t('home.contactMe')}
+                </a>
+              </Button>
+              <Button className="rounded-full" size="lg" asChild>
+                <Link to="/projects">
+                  {t('home.viewWork')}
+                  <ArrowRightIcon className="ml-2 size-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Social Links */}
+            <div className="fade-in slide-in-from-bottom-10 flex animate-in items-center gap-2 fill-mode-backwards pt-2 delay-800 duration-500 ease-out">
+              {profile.social.map((item) => {
+                const Icon = iconMap[item.icon];
+                return (
+                  Icon && (
+                    <a
+                      key={item.platform}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        buttonVariants({ variant: 'outline', size: 'icon' }),
+                        'rounded-full'
+                      )}
+                      title={item.platform}
+                    >
+                      <Icon size={18} />
+                    </a>
+                  )
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* LogoCloud Section */}
+        <section className="relative border-t pt-6 pb-10">
+          <h2 className="text-center font-medium text-lg text-muted-foreground tracking-tight md:text-xl">
+            {t('home.techStack')} <span className="text-foreground">{t('home.expert')}</span>
+          </h2>
+          <div className="relative z-10 mx-auto mt-4 max-w-4xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]">
+            <InfiniteSlider gap={42} reverse speed={80} speedOnHover={200}>
+              {techLogos.map((tech) => (
+                <div
+                  key={tech.name}
+                  className="flex items-center gap-2 text-muted-foreground"
+                >
+                  <span className="text-xl">{tech.icon}</span>
+                  <span className="text-sm font-medium">{tech.name}</span>
+                </div>
+              ))}
+            </InfiniteSlider>
+          </div>
+        </section>
       </main>
     </PageTransition>
   );
