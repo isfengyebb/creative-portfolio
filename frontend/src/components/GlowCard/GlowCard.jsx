@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion';
-import styles from './GlowCard.module.css';
+import { cn } from '../../lib/utils';
 
-function GlowCard({ children, className = '', glowColor = 'primary' }) {
-  const glowClass = styles[`glow-${glowColor}`] || '';
-
+function GlowCard({ children, className = '' }) {
   return (
     <motion.div
-      className={`${styles.card} ${glowClass} ${className}`}
-      whileHover={{ scale: 1.02 }}
+      className={cn(
+        'rounded-lg border bg-card p-6 shadow-sm transition-all',
+        'hover:border-primary/30 hover:shadow-md hover:shadow-primary/5',
+        className
+      )}
+      whileHover={{ scale: 1.01 }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
       {children}

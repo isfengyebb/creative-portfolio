@@ -20,7 +20,12 @@ export function useProfileData() {
       try {
         const res = await fetchProfile(lang);
         if (!cancelled) {
-          setProfile(transformProfile(res.data));
+          if (res && res.data) {
+            setProfile(transformProfile(res.data));
+          } else {
+            // 如果 res.data 为空，也视为一种错误
+            throw new Error('Profile data is null or undefined.');
+          }
         }
       } catch (err) {
         if (!cancelled) {

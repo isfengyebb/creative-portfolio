@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import ParticleBackground from '../../components/ParticleBackground';
+import { Button } from '../../components/ui/button';
+import { cn } from '../../lib/utils';
 import PageTransition from '../../components/PageTransition';
-import styles from './NotFoundPage.module.css';
 
 const generateStars = () =>
   Array.from({ length: 50 }, (_, i) => ({
@@ -21,13 +21,13 @@ function NotFoundPage() {
 
   return (
     <PageTransition>
-      <ParticleBackground />
-      <main className={styles.page}>
-        <div className={styles.stars}>
+      <main className="relative flex min-h-[calc(100vh-3.5rem)] items-center justify-center overflow-hidden">
+        {/* Stars */}
+        <div className="absolute inset-0 overflow-hidden">
           {stars.map((star) => (
             <motion.div
               key={star.id}
-              className={styles.star}
+              className="absolute rounded-full bg-foreground/30"
               style={{
                 left: `${star.x}%`,
                 top: `${star.y}%`,
@@ -47,32 +47,33 @@ function NotFoundPage() {
           ))}
         </div>
 
-        <div className={styles.content}>
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center gap-6 px-4 text-center">
           <motion.div
-            className={styles.errorCode}
+            className="flex items-center text-8xl font-bold tracking-tight md:text-9xl"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
           >
-            <span className={styles.four}>4</span>
+            <span className="text-foreground/80">4</span>
             <motion.span
-              className={styles.zero}
+              className="mx-2 rounded-full bg-primary px-4 py-2 text-primary-foreground"
               animate={{
                 boxShadow: [
-                  '0 0 20px rgba(108, 92, 231, 0.4)',
-                  '0 0 60px rgba(108, 92, 231, 0.8)',
-                  '0 0 20px rgba(108, 92, 231, 0.4)',
+                  '0 0 20px rgba(124, 58, 237, 0.4)',
+                  '0 0 60px rgba(124, 58, 237, 0.8)',
+                  '0 0 20px rgba(124, 58, 237, 0.4)',
                 ],
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               0
             </motion.span>
-            <span className={styles.four}>4</span>
+            <span className="text-foreground/80">4</span>
           </motion.div>
 
           <motion.h1
-            className={styles.title}
+            className="text-2xl font-semibold text-foreground md:text-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
@@ -81,7 +82,7 @@ function NotFoundPage() {
           </motion.h1>
 
           <motion.p
-            className={styles.message}
+            className="max-w-md text-muted-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -94,14 +95,11 @@ function NotFoundPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
           >
-            <Link to="/" className={styles.homeLink}>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+            <Button asChild size="lg">
+              <Link to="/">
                 {t('notFound.goHome')}
-              </motion.span>
-            </Link>
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </main>

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import styles from './LanguageSwitcher.module.css';
+import { cn } from '../../lib/utils';
 
-function LanguageSwitcher() {
+function LanguageSwitcher({ className }) {
   const { i18n } = useTranslation();
   const isZh = i18n.language?.startsWith('zh');
 
@@ -11,7 +11,12 @@ function LanguageSwitcher() {
 
   return (
     <button
-      className={styles.switcher}
+      className={cn(
+        'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors',
+        'hover:bg-accent hover:text-accent-foreground',
+        'h-9 rounded-md px-3',
+        className
+      )}
       onClick={toggleLanguage}
       aria-label={isZh ? 'Switch to English' : '切换为中文'}
     >

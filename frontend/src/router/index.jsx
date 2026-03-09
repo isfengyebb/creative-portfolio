@@ -6,6 +6,7 @@ import RootLayout from '../layouts/RootLayout';
 const HomePage = () => import('../pages/HomePage');
 const ResumePage = () => import('../pages/ResumePage');
 const ProjectsPage = () => import('../pages/ProjectsPage');
+const DemoPage = () => import('../pages/Demo');
 const NotFoundPage = () => import('../pages/NotFoundPage');
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: ROUTES.PROJECTS.slice(1),
         lazy: ProjectsPage,
+      },
+      {
+        path: 'demo',
+        lazy: DemoPage,
       },
       {
         path: '*',
