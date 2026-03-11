@@ -2,24 +2,27 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '../../lib/utils';
 import PageTransition from '../../components/PageTransition';
 import TimelineItem from '../../components/TimelineItem';
+import ExperienceCard from '../../components/ExperienceCard';
 import SkillBar from '../../components/SkillBar';
 import GlowCard from '../../components/GlowCard';
 import { useResumeData } from '../../hooks/useResumeData';
 
 const categoryColors = {
   frontend: 'primary',
-  backend: 'accent',
-  devops: 'pink',
+  visualization: 'accent',
+  state: 'pink',
+  fullstack: 'accent',
+  ai: 'accent',
   tools: 'primary',
-  design: 'accent',
 };
 
 const CATEGORY_I18N_KEYS = {
   frontend: 'resume.categories.frontend',
-  backend: 'resume.categories.backend',
-  devops: 'resume.categories.devops',
+  visualization: 'resume.categories.visualization',
+  state: 'resume.categories.state',
+  fullstack: 'resume.categories.fullstack',
+  ai: 'resume.categories.ai',
   tools: 'resume.categories.tools',
-  design: 'resume.categories.design',
 };
 
 function ResumePage() {
@@ -60,7 +63,7 @@ function ResumePage() {
           {/* Decorative Borders */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-1 size-full overflow-hidden"
+            className="pointer-events-none absolute inset-0 -z-1 size-full overflow-hidden"
           >
             <div className="absolute inset-y-0 left-4 w-px bg-linear-to-b from-transparent via-border to-border md:left-8" />
             <div className="absolute inset-y-0 right-4 w-px bg-linear-to-b from-transparent via-border to-border md:right-8" />
@@ -108,20 +111,9 @@ function ResumePage() {
               </div>
               <div className="space-y-0">
                 {resume.experience.map((exp, index) => (
-                  <TimelineItem
+                  <ExperienceCard
                     key={exp.id}
-                    title={exp.position}
-                    subtitle={exp.company}
-                    period={exp.period}
-                    description={
-                      exp.highlights && (
-                        <ul className="ml-4 list-disc space-y-1">
-                          {exp.highlights.map((item, i) => (
-                            <li key={i}>{item}</li>
-                          ))}
-                        </ul>
-                      )
-                    }
+                    exp={exp}
                     isLast={index === resume.experience.length - 1}
                   />
                 ))}

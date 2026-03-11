@@ -9,5 +9,16 @@
     "github": null,
     "demo": null,
     "featured": true
+  },
+  {
+    "id": "proj-2",
+    "title": "CEE-Lake 用户行为分析平台",
+    "description": "企业级用户行为分析平台，每日处理上亿条行为日志。支持漏斗分析、留存分析、用户旅程、归因分析、分布分析等多种分析模型，配备AI智能分析助手。采用拖拽式Dashboard布局，支持多主题、国际化及访客嵌入模式。",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80",
+    "tags": ["React", "UmiJS", "ECharts", "Ant Design", "DVA", "Tailwind CSS"],
+    "category": "fullstack",
+    "github": null,
+    "demo": null,
+    "featured": true
   }
 ]

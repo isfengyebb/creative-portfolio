@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { Button, buttonVariants } from '../../components/ui/button';
@@ -83,18 +83,21 @@ function ProjectsPage() {
 
           {/* Projects Grid */}
           <motion.div
+            key={activeCategory}
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            layout
           >
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  transition={{
+                    opacity: { duration: 0.25 },
+                    y: { duration: 0.25 },
+                    delay: index * 0.05,
+                  }}
                   className={cn(
                     'group relative overflow-hidden rounded-lg border bg-card shadow-sm transition-all',
                     'hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5'
@@ -170,8 +173,7 @@ function ProjectsPage() {
                     </div>
                   </div>
                 </motion.div>
-              ))}
-            </AnimatePresence>
+            ))}
           </motion.div>
         </section>
       </main>
