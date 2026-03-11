@@ -52,7 +52,7 @@ function HomePage() {
 
   return (
     <PageTransition>
-      <main className="flex w-full flex-col">
+      <main className="relative flex w-full flex-col">
         {/* Hero Section */}
         <section className="mx-auto w-full">
           {/* Top Shades */}
@@ -66,7 +66,7 @@ function HomePage() {
           {/* X Bold Faded Borders */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 mx-auto hidden min-h-screen w-full lg:block"
+            className="pointer-events-none absolute inset-0 mx-auto hidden min-h-screen w-full lg:block"
           >
             <div className="mask-y-from-80% mask-y-to-100% absolute inset-y-0 left-0 z-10 h-full w-px bg-foreground/15" />
             <div className="mask-y-from-80% mask-y-to-100% absolute inset-y-0 right-0 z-10 h-full w-px bg-foreground/15" />
@@ -156,9 +156,9 @@ function HomePage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="fade-in slide-in-from-bottom-10 flex animate-in flex-row flex-wrap items-center justify-center gap-3 fill-mode-backwards pt-4 delay-700 duration-500 ease-out">
+            <div className="fade-in slide-in-into-view-10 flex animate-in relative z-20 flex-row flex-wrap items-center justify-center gap-3 fill-mode-backwards pt-4 delay-700 duration-500 ease-out">
               <Button className="rounded-full" size="lg" variant="secondary" asChild>
-                <a href={`mailto:${profile.email}`}>
+                <a href="https://github.com/isfengyebb">
                   <FaEnvelope className="mr-2 size-4" />
                   {t('home.contactMe')}
                 </a>
@@ -172,7 +172,7 @@ function HomePage() {
             </div>
 
             {/* Social Links */}
-            <div className="fade-in slide-in-from-bottom-10 flex animate-in items-center gap-2 fill-mode-backwards pt-2 delay-800 duration-500 ease-out">
+            <div className="fade-in slide-in-from-bottom-10 flex animate-in relative z-20 items-center gap-2 fill-mode-backwards pt-2 delay-800 duration-500 ease-out">
               {profile.social.map((item) => {
                 const Icon = iconMap[item.icon];
                 return (
