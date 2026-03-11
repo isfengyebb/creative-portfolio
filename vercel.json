@@ -1,5 +1,5 @@
 {
-  "installCommand": "cd frontend && npm install --prefer-offline --no-audit",
+  "installCommand": "cd frontend && pnpm install",
   "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/dist",
   "rewrites": [
